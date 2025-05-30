@@ -22,6 +22,7 @@ Fornecer uma ferramenta eficiente para controle de orçamentos, permitindo que a
     - Autenticação por token (JWT)
     - Utilização do Knex
     - Bcrypt para criação de senhas
+    - Puppeteer para gerar PDF
 - **Integração de Dados:**
   - Processos de ETL e consumo de APIs
 - **Infraestrutura:**
@@ -61,7 +62,7 @@ Fornecer uma ferramenta eficiente para controle de orçamentos, permitindo que a
 5. Crie o arquivo `.env` na raiz do projeto e configure da seguinte forma:
    ```env
    PORT=porta_do_servidor
-   DB_HOST=local_do_servidor
+   DB_HOST=local_do_banco
    DB_USER=usuario_do_banco
    DB_PASSWORD=senha_do_banco
    DB_DATABASE=nome_do_banco

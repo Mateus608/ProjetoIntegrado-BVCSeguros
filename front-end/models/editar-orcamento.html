@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="http://127.0.0.1:3000/style-form-auto/header-form.css">
+    <link rel="stylesheet" href="http://127.0.0.1:3000/style-form-auto/global-form.css">
+    <link rel="stylesheet" href="http://127.0.0.1:3000/style-form-auto/info-inicio.css">
+    <link rel="stylesheet" href="http://127.0.0.1:3000/style-form-auto/cliente-form.css">
+    <link rel="stylesheet" href="http://127.0.0.1:3000/style-form-auto/global-header-lines.css">
+    <link rel="stylesheet" href="http://127.0.0.1:3000/style-form-auto/veiculo-form.css">
+    <link rel="stylesheet" href="http://127.0.0.1:3000/style-form-auto/coberturas-form.css">
+    <link rel="stylesheet" href="http://127.0.0.1:3000/style-form-auto/clausulas-form.css">
+    <link rel="stylesheet" href="http://127.0.0.1:3000/style-form-auto/franquias-form.css">
+    <link rel="stylesheet" href="http://127.0.0.1:3000/style-form-auto/pagamento-form.css">
+    <link rel="stylesheet" href="http://127.0.0.1:3000/style-form-auto/observacoes-form.css">
+    <link rel="stylesheet" href="http://127.0.0.1:3000/style-form-auto/footer-btn-form.css">
+    <link rel="stylesheet" href="http://127.0.0.1:3000/style-form-auto/sweetalert-custom.css">
+    <link rel="icon" href="http://127.0.0.1:3000/automovel-icon.png" type="image/x-icon">
+    <title>Orçamento - Autmóvel</title>
+</head>
+
+<body>
+    <header class="nav-menu-superior">
+        <div class="div-container-voltar">
+            <a href="http://127.0.0.1:3000/"><img class="img-icon-voltar" src="http://127.0.0.1:3000/icon-voltar-white.png"
+                    alt="icon-voltar" title="Retornar à tela inicial"></a>
+            <p class="p-voltar">Voltar</p>
+        </div>
+        <img class="img-logo-bvcs" src="http://127.0.0.1:3000/logo-bvcs-branco.svg" alt="logo-bvcs">
+        <button class="btn-limpar-campos" title="Limpar valores digitados no formulário">Limpar Campos</button>
+        <p class="p-orc-auto">Orçamento: Automóvel</p>
+        <p class="p-version">V1.0.0</p>
+    </header>
+
+    <section style="padding-top: 50px;" class="section-info-inicio">
+
+        <div class="div-checkbox-novo-renovacao">
+            <label for="radio">
+                <input type="radio" class="alinhamento-checkbox-radio" name="tipo-orcamento" title="Orçamento modalidade Gestor de Risco" value="Gestor" checked>
+                Gestor de Risco
+            </label>
+
+            <label for="radio">
+                <input type="radio" class="alinhamento-checkbox-radio" name="tipo-orcamento" title="Orçamento modalidade Menor Preço" value="Menor"> Menor Preço
+            </label>
+        </div>
+        <div class="container-alinhamento-btn">
+            <div id="container-seguradoras">
+                <div style="margin-bottom: 5px;">
+                    <label for="selecionar">Cia</label>
+                    <select id="select-seguradora">
+                        <option value="selecione" disabled selected>Selecione</option>
+                        <option value="Allianz">Allianz</option>
+                        <option value="Allianz Trade">Allianz Trade</option>
+                        <option value="American Life">American Life</option>
+                        <option value="AXA">AXA</option>
+                        <option value="Azul">Azul</option>
+                        <option value="Bradesco">Bradesco</option>
+                        <option value="HDI">HDI</option>
+                        <option value="Itau">Itaú</option>
+                        <option value="Liberty">Liberty</option>
+                        <option value="Mapfre">Mapfre</option>
+                        <option value="Mitsui">Mitsui</option>
+                        <option value="Porto">Porto</option>
+                        <option value="Pottencial">Pottencial</option>
+                        <option value="SulAmerica">SulAmérica</option>
+                        <option value="Sompo">Sompo</option>
+                        <option value="Suhai">Suhai</option>
+                        <option value="Tokio">Tokio</option>
+                        <option value="Zurich">Zurich</option>
+                    </select>
+                </div>
+            </div>
+            <div id="btn-add-remove-seguradora">
+                <button id="add-cia" class="add-seguradora" title="Adicionar Seguradora">+ Cia</button>
+                <button id="add-cia-menor-preco" title="Adicionar Seguradora">+ Cia</button>
+                <button style="background-color:#8e0101;" class="remove-seguradora-btn" data-id="${seguradoraCounter}" title="Remover Seguradora">-
+                    Cia</button>
+            </div>
+            <div class="div-box-sem-logo-cia">
+                <label for="checkbox">
+                    <input id="sem-logo-cia" class="alinhamento-checkbox-radio" type="checkbox" value="0 KM" title="Retirar a logo da seguradora do orçamento"> Sem Logo
+                    Cia
+                </label>
+            </div>
+        </div>
+
+        <div class="div-checkbox-novo-renovacao">
+            <label for="radio">
+                <input type="radio" class="alinhamento-checkbox-radio" name="tipo-seguro" value="Seguro Novo" title="Seguro Novo"> Seguro
+                Novo
+            </label>
+
+            <label for="radio">
+                <input type="radio" class="alinhamento-checkbox-radio" name="tipo-seguro" value="Renovação" title="Renovação do Seguro"> Renovação
+            </label>
+        </div>
+        <div class="container-select-comercial">
+            <label for="selecionar">Comercial</label>
+            <select id="select-preposto">
+                <option value="selecione" disabled selected>Selecione</option>
+                <option value="Mateus Milane">Mateus Milane</option>
+            </select>
+        </div>
+        <div class="div-data">
+            <label for="data">Data</label>
+            <input type="text" id="input-data" name="data" placeholder="00/00/0000" title="Data da cotação com vencimento de 7 dias">
+        </div>
+    </section>
+
+    <div class="header-title-section">
+        <span>CLIENTE</span>
+    </div>
+
+    <section class="section-cliente">
+        <div>
+            <label for="nome">Nome</label>
+            <input class="input-nome" type="text" id="input-nome-cliente" name="nome" placeholder="Nome do cliente" title="Nome do cliente">
+        </div>
+
+        <div>
+            <label for="nome">Telefone/Celular</label>
+            <input type="text" id="input-celular" name="celular" placeholder="(DDD) 99999-9999" title="Telefone do cliente (opcional)">
+        </div>
+
+        <div class="div-checkbox-pfisica-pjuridica">
+            <label for="checkbox">
+                <input type="radio" class="alinhamento-checkbox-radio" value="PF" name="tipo_pessoa" title="Tipo do cliente (opcional)"> Pessoa Física
+            </label>
+            <label for="checkbox">
+                <input type="radio" class="alinhamento-checkbox-radio" value="PJ" name="tipo_pessoa" title="Tipo do cliente (opcional)"> Pessoa Juridica
+            </label>
+        </div>
+    </section>
+
+    <div class="header-title-section">
+        <span>VEÍCULO</span>
+        <img class="icon-history-veiculo" src="http://127.0.0.1:3000/icon-history.png" alt="historico"
+            style="height: 50px; cursor: pointer;" title="Histórico de exclusão de veículos">
+    </div>
+
+    <section class="section-item">
+        <div>
+            <div class="container-top">
+                <div class="container-item-fab-mod">
+                    <div>
+                        <label for="nome">Nº Item</label>
+                        <input class="input-n-item" type="text" id="id-veiculo" name="veiculo" placeholder="001"
+                            value="001">
+                    </div>
+                    <div>
+                        <label for="nome">Fab.</label>
+                        <input class="input-fab" type="text" id="ano-veiculo" name="veiculo" placeholder="YYYY" title="Ano de fabricação do veículo">
+                    </div>
+                    <div>
+                        <label for="nome">Mod.</label>
+                        <input class="input-mod" type="text" id="modelo-veiculo" name="veiculo" placeholder="YYYY" title="Ano do modelo do veículo">
+                    </div>
+                </div>
+                <div>
+                    <label for="checkbox">
+                        <input id="0km-veiculo" class="alinhamento-checkbox-radio" type="checkbox" value="0 KM" title="Veículo 0 KM"> 0 KM
+                    </label>
+                </div>
+                <div>
+                    <label for="nome">Descrição do Veiculo</label>
+                    <input class="input-veiculo" type="text" id="nome-veiculo" name="veiculo"
+                        placeholder="Insira o veiculo"  title="Descrição do veículo">
+                </div>
+            </div>
+
+            <div class="container-bottom">
+                <div>
+                    <label for="selecionar">Combustível</label>
+                    <select id="select-combustivel-veiculo">
+                        <option value="selecione" disabled selected>Selecione</option>
+                        <option value="Gasolina">Gasolina</option>
+                        <option value="Álcool">Álcool</option>
+                        <option value="Flex">Flex</option>
+                        <option value="Diesel">Diesel</option>
+                        <option value="Elétrico">Elétrico</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="nome">Placa</label>
+                    <input class="input-placa" type="text" id="placa-veiculo" name="veiculo" placeholder="XXX-XXXX" title="Placa do veículo">
+                </div>
+            </div>
+            <div id="container-veiculo"></div>
+            <div
+                style="display: flex; align-items: center; justify-content: center; margin-top: 40px; transform: translateX(22px);">
+                <button id="btn-add-veiculo" style="background-color:#068e01;">Adicionar Veículo</button>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="section-pop">
+        <div class="header-title-section">
+            <span>COBERTURAS</span>
+        </div>
+        <div id="container-recomendado">
+            <p style="margin-bottom: 15px; font-size: 18px;"><strong>Qual Seguradora você recomenda?</strong></p>
+            <nav>
+                <label for="radio" style="color: #01458e; display: flex; align-items: center;">
+                    <input type="radio" name="recomendado" value="1">
+                    <strong style="margin-left: 5px;" title="Recomendar Seguradora 1">Seguradora 1</strong>
+                </label>
+
+                <label for="radio" style="color: #8e0101; display: flex; align-items: center;">
+                    <input type="radio" name="recomendado" value="2">
+                    <strong style="margin-left: 5px;" title="Recomendar Seguradora 2">Seguradora 2</strong>
+                </label>
+
+                <label for="radio" style="display: flex; align-items: center;">
+                    <input type="radio" name="recomendado" value="0" checked>
+                    <strong style="margin-left: 5px;" title="Não recomendar nenhuma seguradora">Nenhuma</strong>
+                </label>
+            </nav>
+        </div>
+        <section class="section-coberturas">
+            <table id="table-coberturas">
+                <thead>
+                    <tr id="tr-th-coberturas">
+                        <th id="th-coberturas-ok" class="th-table-ok">Ok</th>
+                        <th id="th-coberturas-coberturas" class="th-table-cliente">Coberturas</th>
+                        <th id="th-coberturas-valores" class="th-table-cliente">
+                            <p class="p-title-table-seguradora">-</p>Top Premium
+                        </th>
+                        <th id="th-coberturas-valores" class="th-table-cliente">
+                            <p class="p-title-table-seguradora">-</p>Top Master
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="tr-td-coberturas1">
+                        <td>
+                            <input id="checkbox-cobertura-1" type="checkbox" title="Inserir cobertura Colisão, Incêndio e Roubo">
+                        </td>
+                        <td>COLISÃO, INCÊNDIO E ROUBO</td>
+                        <td>
+                            <select id="valor-plano-ouro-cobertura1">
+                                <option value="selecione" disabled selected>Selecione</option>
+                                <option value="100% TAB. FIPE">100% TAB. FIPE</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select id="valor-plano-prata-cobertura1">
+                                <option value="selecione" disabled selected>Selecione</option>
+                                <option value="100% TAB. FIPE">100% TAB. FIPE</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr id="tr-td-coberturas2">
+                        <td>
+                            <input id="checkbox-cobertura-2" type="checkbox" title="Inserir cobertura Danos Materiais">
+                        </td>
+                        <td>DANOS MATERIAIS</td>
+                        <td>
+                            <input type="text" id="valor-plano-ouro-cobertura2" name="nome" placeholder="R$ 0,00" title="Insira o valor da cobertura">
+                        </td>
+                        <td>
+                            <input type="text" id="valor-plano-prata-cobertura2" name="nome" placeholder="R$ 0,00" title="Insira o valor da cobertura">
+                        </td>
+                    </tr>
+                    <tr id="tr-td-coberturas3">
+                        <td>
+                            <input id="checkbox-cobertura-3" type="checkbox" title="Inserir cobertura Danos Corporais">
+                        </td>
+                        <td>DANOS CORPORAIS</td>
+                        <td>
+                            <input type="text" id="valor-plano-ouro-cobertura3" name="nome" placeholder="R$ 0,00" title="Insira o valor da cobertura">
+                        </td>
+                        <td>
+                            <input type="text" id="valor-plano-prata-cobertura3" name="nome" placeholder="R$ 0,00" title="Insira o valor da cobertura">
+                        </td>
+                    </tr>
+                    <tr id="tr-td-coberturas4">
+                        <td>
+                            <input id="checkbox-cobertura-4" type="checkbox" title="Inserir cobertura Danos Morais">
+                        </td>
+                        <td>DANOS MORAIS</td>
+                        <td>
+                            <input type="text" id="valor-plano-ouro-cobertura4" name="nome" placeholder="R$ 0,00" title="Insira o valor da cobertura">
+                        </td>
+                        <td>
+                            <input type="text" id="valor-plano-prata-cobertura4" name="nome" placeholder="R$ 0,00" title="Insira o valor da cobertura">
+                        </td>
+                    </tr>
+                    <tr id="tr-td-coberturas5">
+                        <td>
+                            <input id="checkbox-cobertura-5" type="checkbox" title="Inserir cobertura App - Morte">
+                        </td>
+                        <td>APP - MORTE</td>
+                        <td>
+                            <input type="text" id="valor-plano-ouro-cobertura5" name="nome" placeholder="R$ 0,00" title="Insira o valor da cobertura">
+                        </td>
+                        <td>
+                            <input type="text" id="valor-plano-prata-cobertura5" name="nome" placeholder="R$ 0,00" title="Insira o valor da cobertura">
+                        </td>
+                    </tr>
+                    <tr id="tr-td-coberturas6">
+                        <td>
+                            <input id="checkbox-cobertura-6" type="checkbox" title="Inserir cobertura App - Invalidez">
+                        </td>
+                        <td>APP - INVALIDEZ</td>
+                        <td>
+                            <input type="text" id="valor-plano-ouro-cobertura6" name="nome" placeholder="R$ 0,00" title="Insira o valor da cobertura">
+                        </td>
+                        <td>
+                            <input type="text" id="valor-plano-prata-cobertura6" name="nome" placeholder="R$ 0,00" title="Insira o valor da cobertura">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <div class="header-title-section">
+            <span>CLÁUSULAS</span>
+        </div>
+
+        <section class="section-clausulas">
+            <table>
+                <thead>
+                    <tr id="tr-th-clausulas">
+                        <th id="th-clausulas-ok" class="th-table-ok">Ok</th>
+                        <th>Clausulas</th>
+                        <th>
+                            <p class="p-title-table-seguradora">-</p>Top Premium
+                        </th>
+                        <th>
+                            <p class="p-title-table-seguradora">-</p>Top Master
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="tr-td-clausulas1">
+                        <td>
+                            <input id="checkbox-clausulas-1" type="checkbox" value="aceito" title="Inserir clausula Assistência 24h">
+                        </td>
+                        <td>ASSISTÊNCIA 24H</td>
+                        <td>
+                            <select id="select-clausulas-p-ouro1">
+                                <option value="selecione" disabled selected>Selecione</option>
+                                <option value="Sim">Sim</option>
+                                <option value="Não">Não</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select id="select-clausulas-p-prata1">
+                                <option value="selecione" disabled selected>Selecione</option>
+                                <option value="Sim">Sim</option>
+                                <option value="Não">Não</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr id="tr-td-clausulas2">
+                        <td>
+                            <input id="checkbox-clausulas-2" type="checkbox" value="aceito" title="Inserir clausula Carro Reserva">
+                        </td>
+                        <td>CARRO RESERVA</td>
+                        <td>
+                            <select id="select-clausulas-p-ouro2">
+                                <option value="selecione" disabled selected>Selecione</option>
+                                <option value="Ilimitado">Ilimitado</option>
+                                <option value="15 Dias">15 Dias</option>
+                                <option value="30 Dias">30 Dias</option>
+                                <option value="Não possui">Não possui</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select id="select-clausulas-p-prata2">
+                                <option value="selecione" disabled selected>Selecione</option>
+                                <option value="Ilimitado">Ilimitado</option>
+                                <option value="15 Dias">15 Dias</option>
+                                <option value="30 Dias">30 Dias</option>
+                                <option value="Não possui">Não possui</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr id="tr-td-clausulas3">
+                        <td>
+                            <input id="checkbox-clausulas-3" type="checkbox" value="aceito" title="Inserir clausula Martelinho de Ouro">
+                        </td>
+                        <td>MARTELINHO DE OURO</td>
+                        <td>
+                            <select id="select-clausulas-p-ouro3">
+                                <option value="selecione" disabled selected>Selecione</option>
+                                <option value="Sim">Sim</option>
+                                <option value="Não">Não</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select id="select-clausulas-p-prata3">
+                                <option value="selecione" disabled selected>Selecione</option>
+                                <option value="Sim">Sim</option>
+                                <option value="Não">Não</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr id="tr-td-clausulas4">
+                        <td>
+                            <input id="checkbox-clausulas-4" type="checkbox" value="aceito" title="Inserir clausula Vidros e Retrovisores">
+                        </td>
+                        <td>VIDROS E RETROVISORES</td>
+                        <td>
+                            <select id="select-clausulas-p-ouro4">
+                                <option value="selecione" disabled selected>Selecione</option>
+                                <option value="Sim">Sim</option>
+                                <option value="Não">Não</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select id="select-clausulas-p-prata4">
+                                <option value="selecione" disabled selected>Selecione</option>
+                                <option value="Sim">Sim</option>
+                                <option value="Não">Não</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr id="tr-td-clausulas5">
+                        <td>
+                            <input id="checkbox-clausulas-5" type="checkbox" value="aceito" title="Inserir clausula Lanternas e Faróis">
+                        </td>
+                        <td>LANTERNAS E FARÓIS</td>
+                        <td>
+                            <select id="select-clausulas-p-ouro5">
+                                <option value="selecione" disabled selected>Selecione</option>
+                                <option value="Sim">Sim</option>
+                                <option value="Não">Não</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select id="select-clausulas-p-prata5">
+                                <option value="selecione" disabled selected>Selecione</option>
+                                <option value="Sim">Sim</option>
+                                <option value="Não">Não</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <div class="header-title-section">
+            <span>FRANQUIAS</span>
+            <img class="icon-history-franquias" src="http://127.0.0.1:3000/icon-history.png" alt="historico"
+                style="height: 50px; cursor: pointer;" title="Histórico de exclusão de franquias">
+        </div>
+
+        <section class="section-franquias">
+            <label for="checkbox">
+                <input type="checkbox" id="checkbox-exibir-franquias" class="alinhamento-checkbox-radio" title="Desmarque caso não queira exibir franquias neste orçamento" value="aceito" checked> Quero exibir as
+                franquias neste orçamento
+            </label>
+            <div>
+                <table id="id-table-franquias" class="table-franquias">
+                    <thead>
+                        <tr id="tr-th-franquias">
+                            <th>Tipo da Franquia</th>
+                            <th>Veículo<p id="p-id-veiculo" style="padding: 5px; margin-top: 5px;">-</p>
+                            </th>
+                            <th>
+                                <p class="p-title-table-seguradora">-</p>Top Premium
+                            </th>
+                            <th>
+                                <p class="p-title-table-seguradora">-</p>Top Master
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-frnaquias">
+                        <tr id="tr-td-franquias">
+                            <td>
+                                <select id="select-tipo-franquia">
+                                    <option value="selecione" disabled selected>Selecione</option>
+                                    <option value="Casco: Reduzida">Casco: Reduzida</option>
+                                    <option value="Casco: Obrigatória">Casco: Obrigatória</option>
+                                    <option value="Casco: Majorada">Casco: Majorada</option>
+                                    <option value="Casco: Não Contratado">Casco: Não Contratado</option>
+                                </select>
+                            </td>
+                            <td id="td-veiculo-table-franquias" class="td-table-cliente"><strong>VEÍCULO</strong></td>
+                            <td>
+                                <input type="text" id="valor-plano-ouro-franquias" name="nome" placeholder="R$ 0,00" title="Insira o valor da franquia">
+                            </td>
+                            <td>
+                                <input type="text" id="valor-plano-prata-franquias" name="nome" placeholder="R$ 0,00" title="Insira o valor da franquia">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="div-btn-add-franquia">
+                    <button id="btn-add-franquia" style="background-color:#068e01;" title="Adicionar Franquia">+ Franquia</button>
+                </div>
+            </div>
+            <div id="container-franquias"></div>
+        </section>
+
+        <div class="header-title-section">
+            <span>FORMAS DE PAGAMENTO</span>
+        </div>
+
+        <section class="section-pagamento">
+
+            <div class="div-container-radio-pagamento">
+                <label for="radio">
+                    <input type="radio" class="alinhamento-checkbox-radio" name="tipo-pagamento" value="Cartão Porto" title="Forma de pagamento Cartão Porto">
+                    Cartão Porto
+                </label>
+
+                <label for="radio">
+                    <input type="radio" class="alinhamento-checkbox-radio" name="tipo-pagamento"
+                        value="Cartão de Crédito" title="Forma de pagamento Cartão de Crédito"> Cartão de Crédito
+                </label>
+
+                <label for="radio">
+                    <input type="radio" class="alinhamento-checkbox-radio" name="tipo-pagamento"
+                        value="Débito em Conta" title="Forma de pagamento Débito em Conta"> Débito em Conta
+                </label>
+
+                <label for="radio">
+                    <input type="radio" class="alinhamento-checkbox-radio" name="tipo-pagamento" value="Boleto" title="Forma de pagamento Boleto"> Boleto
+                </label>
+            </div>
+
+            <table id="id-table-pagamento" class="table-pagamento">
+                <thead>
+                    <tr>
+                        <th>
+                            <p class="p-title-table-seguradora">-</p>
+                        </th>
+                        <th>Top Premium</th>
+                        <th>Top Master</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr></tr>
+                    <tr>
+                        <td>VALOR À VISTA</td>
+                        <td><input type="text" id="valor-avista-plano-ouro" name="nome" placeholder="R$ 0,00" title="Insira o valor do prêmio"></td>
+                        <td><input type="text" id="valor-avista-plano-prata" name="nome" placeholder="R$ 0,00" title="Insira o valor do prêmio"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div id="container-pagamento-segunda-seguradora"></div>
+
+            <button type="button" class="btn-calcular" title="Calcular parcelas de pagamento">Calcular</button>
+
+            <table>
+                <thead>
+                    <tr id="tr-th-pagamento">
+                        <th id="th-pagamento-ok" class="th-table-ok">Ok</th>
+                        <th>Parcelas</th>
+                        <th>
+                            <p class="p-title-table-seguradora">-</p>Top Premium
+                        </th>
+                        <th>
+                            <p class="p-title-table-seguradora">-</p>Top Master
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="tr-td-pagamento-avista">
+                        <td>
+                            <input id="checkbox-pagamento-avista" type="checkbox" value="aceito" title="Inserir pagamento a vista">
+                        </td>
+                        <td>A VISTA</td>
+                        <td>
+                            <input type="text" id="input-valor-avista-plano-ouro" name="nome" placeholder="R$ 0,00">
+                        </td>
+                        <td>
+                            <input type="text" id="input-valor-avista-plano-prata" name="nome" placeholder="R$ 0,00">
+                        </td>
+                    </tr>
+                    <tr id="tr-td-pagamento-1">
+                        <td>
+                            <input id="checkbox-pagamento-1" type="checkbox" value="aceito" title="Inserir parcela de pagamento 1 vez">
+                        </td>
+                        <td>1 VEZ</td>
+                        <td>
+                            <input type="text" id="input-valor-1x-plano-ouro" name="nome" placeholder="R$ 0,00">
+                        </td>
+                        <td>
+                            <input type="text" id="input-valor-1x-plano-prata" name="nome" placeholder="R$ 0,00">
+                        </td>
+                    </tr>
+                    <tr id="tr-td-pagamento-2">
+                        <td>
+                            <input id="checkbox-pagamento-2" type="checkbox" value="aceito" title="Inserir parcela de pagamento 2 vezes">
+                        </td>
+                        <td>2 VEZES</td>
+                        <td>
+                            <input type="text" id="input-valor-2x-plano-ouro" name="nome" placeholder="R$ 0,00">
+                        </td>
+                        <td>
+                            <input type="text" id="input-valor-2x-plano-prata" name="nome" placeholder="R$ 0,00">
+                        </td>
+                    </tr>
+                    <tr id="tr-td-pagamento-3">
+                        <td>
+                            <input id="checkbox-pagamento-3" type="checkbox" value="aceito" title="Inserir parcela de pagamento 3 vezes">
+                        </td>
+                        <td>3 VEZES</td>
+                        <td>
+                            <input type="text" id="input-valor-3x-plano-ouro" name="nome" placeholder="R$ 0,00">
+                        </td>
+                        <td>
+                            <input type="text" id="input-valor-3x-plano-prata" name="nome" placeholder="R$ 0,00">
+                        </td>
+                    </tr>
+                    <tr id="tr-td-pagamento-4">
+                        <td>
+                            <input id="checkbox-pagamento-4" type="checkbox" value="aceito" title="Inserir parcela de pagamento 4 vezes">
+                        </td>
+                        <td>4 VEZES</td>
+                        <td>
+                            <input type="text" id="input-valor-4x-plano-ouro" name="nome" placeholder="R$ 0,00">
+                        </td>
+                        <td>
+                            <input type="text" id="input-valor-4x-plano-prata" name="nome" placeholder="R$ 0,00">
+                        </td>
+                    </tr>
+                    <tr id="tr-td-pagamento-5">
+                        <td>
+                            <input id="checkbox-pagamento-5" type="checkbox" value="aceito" title="Inserir parcela de pagamento 5 vezes">
+                        </td>
+                        <td>5 VEZES</td>
+                        <td>
+                            <input type="text" id="input-valor-5x-plano-ouro" name="nome" placeholder="R$ 0,00">
+                        </td>
+                        <td>
+                            <input type="text" id="input-valor-5x-plano-prata" name="nome" placeholder="R$ 0,00">
+                        </td>
+                    </tr>
+                    <tr id="tr-td-pagamento-6">
+                        <td>
+                            <input id="checkbox-pagamento-6" type="checkbox" value="aceito" title="Inserir parcela de pagamento 6 vezes">
+                        </td>
+                        <td>6 VEZES</td>
+                        <td>
+                            <input type="text" id="input-valor-6x-plano-ouro" name="nome" placeholder="R$ 0,00">
+                        </td>
+                        <td>
+                            <input type="text" id="input-valor-6x-plano-prata" name="nome" placeholder="R$ 0,00">
+                        </td>
+                    </tr>
+                    <tr id="tr-td-pagamento-7">
+                        <td>
+                            <input id="checkbox-pagamento-7" type="checkbox" value="aceito" title="Inserir parcela de pagamento 7 vezes">
+                        </td>
+                        <td>7 VEZES</td>
+                        <td>
+                            <input type="text" id="input-valor-7x-plano-ouro" name="nome" placeholder="R$ 0,00">
+                        </td>
+                        <td>
+                            <input type="text" id="input-valor-7x-plano-prata" name="nome" placeholder="R$ 0,00">
+                        </td>
+                    </tr>
+                    <tr id="tr-td-pagamento-8">
+                        <td>
+                            <input id="checkbox-pagamento-8" type="checkbox" value="aceito" title="Inserir parcela de pagamento 8 vezes">
+                        </td>
+                        <td>8 VEZES</td>
+                        <td>
+                            <input type="text" id="input-valor-8x-plano-ouro" name="nome" placeholder="R$ 0,00">
+                        </td>
+                        <td>
+                            <input type="text" id="input-valor-8x-plano-prata" name="nome" placeholder="R$ 0,00">
+                        </td>
+                    </tr>
+                    <tr id="tr-td-pagamento-9">
+                        <td>
+                            <input id="checkbox-pagamento-9" type="checkbox" value="aceito" title="Inserir parcela de pagamento 9 vezes">
+                        </td>
+                        <td>9 VEZES</td>
+                        <td>
+                            <input type="text" id="input-valor-9x-plano-ouro" name="nome" placeholder="R$ 0,00">
+                        </td>
+                        <td>
+                            <input type="text" id="input-valor-9x-plano-prata" name="nome" placeholder="R$ 0,00">
+                        </td>
+                    </tr>
+                    <tr id="tr-td-pagamento-10">
+                        <td>
+                            <input id="checkbox-pagamento-10" type="checkbox" value="aceito" title="Inserir parcela de pagamento 10 vezes">
+                        </td>
+                        <td>10 VEZES</td>
+                        <td>
+                            <input type="text" id="input-valor-10x-plano-ouro" name="nome" placeholder="R$ 0,00">
+                        </td>
+                        <td>
+                            <input type="text" id="input-valor-10x-plano-prata" name="nome" placeholder="R$ 0,00">
+                        </td>
+                    </tr>
+                    <tr id="tr-td-pagamento-11">
+                        <td>
+                            <input id="checkbox-pagamento-11" type="checkbox" value="aceito" title="Inserir parcela de pagemento 11 vezes">
+                        </td>
+                        <td>11 VEZES</td>
+                        <td>
+                            <input type="text" id="input-valor-11x-plano-ouro" name="nome" placeholder="R$ 0,00">
+                        </td>
+                        <td>
+                            <input type="text" id="input-valor-11x-plano-prata" name="nome" placeholder="R$ 0,00">
+                        </td>
+                    </tr>
+                    <tr id="tr-td-pagamento-12">
+                        <td>
+                            <input id="checkbox-pagamento-12" type="checkbox" value="aceito" title="Inserir parcela de pagamento 12 vezes">
+                        </td>
+                        <td>12 VEZES</td>
+                        <td>
+                            <input type="text" id="input-valor-12x-plano-ouro" name="nome" placeholder="R$ 0,00">
+                        </td>
+                        <td>
+                            <input type="text" id="input-valor-12x-plano-prata" name="nome" placeholder="R$ 0,00">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </section>
+
+    <section class="section-individual">
+        <div class="header-title-section">
+            <span>COBERTURAS</span>
+        </div>
+
+        <div id="container-recomendado-individual">
+            <p style="margin-bottom: 15px; font-size: 18px;"><strong>Qual Seguradora você recomenda?</strong></p>
+            <nav>
+                <label for="radio" style="color: #01458e; display: flex; align-items: center;">
+                    <input type="radio" name="recomendado-individual" value="1" title="Recomendar Seguradora 1">
+                    <strong style="margin-left: 5px;">Seguradora 1</strong>
+                </label>
+
+                <label for="radio" style="color: #8e0101; display: flex; align-items: center;">
+                    <input type="radio" name="recomendado-individual" value="2" title="Recomendar Seguradora 2">
+                    <strong style="margin-left: 5px;">Seguradora 2</strong>
+                </label>
+
+                <div id="seguradora-recomendada3">
+                    <label for="radio" style="color: #8e0101; display: flex; align-items: center;">
+                        <input type="radio" name="recomendado-individual" value="3" title="Recomendar Seguradora 3">
+                        <strong style="margin-left: 5px;">Seguradora 3</strong>
+                    </label>
+                </div>
+
+                <div id="seguradora-recomendada4">
+                    <label for="radio" style="color: #8e0101; display: flex; align-items: center;">
+                        <input type="radio" name="recomendado-individual" value="4" title="Recomendar Seguradora 4">
+                        <strong style="margin-left: 5px;">Seguradora 4</strong>
+                    </label>
+                </div>
+
+                <label for="radio" style="display: flex; align-items: center;">
+                    <input type="radio" title="Não recomendar nenhuma seguradora" name="recomendado-individual" value="0" checked>
+                    <strong style="margin-left: 5px;">Nenhuma</strong>
+                </label>
+            </nav>
+        </div>
+
+        <section class="section-coberturas">
+            <table id="table-coberturas">
+                <thead>
+                    <tr id="tr-th-coberturas-individual">
+                        <th id="th-coberturas-ok" class="th-table-ok">Ok</th>
+                        <th id="th-coberturas-coberturas" class="th-table-cliente">Coberturas</th>
+                        <th id="th-coberturas-valores" class="th-table-cliente">
+                            <p class="p-title-table-seguradora">-</p>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="tr-td-coberturas-individual1">
+                        <td>
+                            <input id="checkbox-cobertura-1-individual" type="checkbox" title="Inserir cobertura Colisão, Incêndio e Roubo">
+                        </td>
+                        <td>COLISÃO, INCÊNDIO E ROUBO</td>
+                        <td>
+                            <select id="valor-individual-cobertura1">
+                                <option value="selecione" disabled selected>Selecione</option>
+                                <option value="100% TAB. FIPE">100% TAB. FIPE</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr id="tr-td-coberturas-individual2">
+                        <td>
+                            <input id="checkbox-cobertura-2-individual" type="checkbox" title="Inserir cobertura Danos Materiais">
+                        </td>
+                        <td>DANOS MATERIAIS</td>
+                        <td>
+                            <input type="text" id="valor-individual-cobertura2" name="nome" placeholder="R$ 0,00" title="Insira o valor da cobertura">
+                        </td>
+                    </tr>
+                    <tr id="tr-td-coberturas-individual3">
+                        <td>
+                            <input id="checkbox-cobertura-3-individual" type="checkbox" title="Inserir cobertura Danos Corporais">
+                        </td>
+                        <td>DANOS CORPORAIS</td>
+                        <td>
+                            <input type="text" id="valor-individual-cobertura3" name="nome" placeholder="R$ 0,00" title="Insira o valor da cobertura">
+                        </td>
+                    </tr>
+                    <tr id="tr-td-coberturas-individual4">
+                        <td>
+                            <input id="checkbox-cobertura-4-individual" type="checkbox" title="Inserir cobertura Danos Morais">
+                        </td>
+                        <td>DANOS MORAIS</td>
+                        <td>
+                            <input type="text" id="valor-individual-cobertura4" name="nome" placeholder="R$ 0,00" title="Insira o valor da cobertura">
+                        </td>
+                    </tr>
+                    <tr id="tr-td-coberturas-individual5">
+                        <td>
+                            <input id="checkbox-cobertura-5-individual" type="checkbox" title="Inserir cobertura App - Morte">
+                        </td>
+                        <td>APP - MORTE</td>
+                        <td>
+                            <input type="text" id="valor-individual-cobertura5" name="nome" placeholder="R$ 0,00" title="Insira o valor da cobertura">
+                        </td>
+                    </tr>
+                    <tr id="tr-td-coberturas-individual6">
+                        <td>
+                            <input id="checkbox-cobertura-6-individual" type="checkbox" title="Inserir cobertura App - Invalidez">
+                        </td>
+                        <td>APP - INVALIDEZ</td>
+                        <td>
+                            <input type="text" id="valor-individual-cobertura6" name="nome" placeholder="R$ 0,00" title="Insira o valor da cobertura">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <div class="header-title-section">
+            <span>CLÁUSULAS</span>
+        </div>
+
+        <section class="section-clausulas">
+            <table>
+                <thead>
+                    <tr id="tr-th-clausulas-individual">
+                        <th id="th-clausulas-ok" class="th-table-ok">Ok</th>
+                        <th>Clausulas</th>
+                        <th>
+                            <p class="p-title-table-seguradora">-</p>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="tr-td-clausulas-individual1">
+                        <td>
+                            <input id="checkbox-clausulas-1-individual" type="checkbox" value="aceito" title="Inserir clausula Assistência 24h">
+                        </td>
+                        <td>ASSISTÊNCIA 24H</td>
+                        <td>
+                            <select id="select-clausulas-individual1">
+                                <option value="selecione" disabled selected>Selecione</option>
+                                <option value="Sim">Sim</option>
+                                <option value="Não">Não</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr id="tr-td-clausulas-individual2">
+                        <td>
+                            <input id="checkbox-clausulas-2-individual" type="checkbox" value="aceito" title="Inserir clausula Carro Reserva">
+                        </td>
+                        <td>CARRO RESERVA</td>
+                        <td>
+                            <select id="select-clausulas-individual2">
+                                <option value="selecione" disabled selected>Selecione</option>
+                                <option value="Ilimitado">Ilimitado</option>
+                                <option value="15 Dias">15 Dias</option>
+                                <option value="30 Dias">30 Dias</option>
+                                <option value="Não possui">Não possui</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr id="tr-td-clausulas-individual3">
+                        <td>
+                            <input id="checkbox-clausulas-3-individual" type="checkbox" value="aceito" title="Inserir clausula Martelinho de Ouro">
+                        </td>
+                        <td>MARTELINHO DE OURO</td>
+                        <td>
+                            <select id="select-clausulas-individual3">
+                                <option value="selecione" disabled selected>Selecione</option>
+                                <option value="Sim">Sim</option>
+                                <option value="Não">Não</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr id="tr-td-clausulas-individual4">
+                        <td>
+                            <input id="checkbox-clausulas-4-individual" type="checkbox" value="aceito" title="Inserir clausula Vidros e Retrovisores">
+                        </td>
+                        <td>VIDROS E RETROVISORES</td>
+                        <td>
+                            <select id="select-clausulas-individual4">
+                                <option value="selecione" disabled selected>Selecione</option>
+                                <option value="Sim">Sim</option>
+                                <option value="Não">Não</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr id="tr-td-clausulas-individual5">
+                        <td>
+                            <input id="checkbox-clausulas-5-individual" type="checkbox" value="aceito" title="Inserir clausula Lanternas e Faróis">
+                        </td>
+                        <td>LANTERNAS E FARÓIS</td>
+                        <td>
+                            <select id="select-clausulas-individual5">
+                                <option value="selecione" disabled selected>Selecione</option>
+                                <option value="Sim">Sim</option>
+                                <option value="Não">Não</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <div class="header-title-section">
+            <span>FRANQUIAS</span>
+            <img class="icon-history-franquias-individual" src="http://127.0.0.1:3000/icon-history.png" alt="historico"
+                style="height: 50px; cursor: pointer;" title="Histórico de exclusão de franquias">
+        </div>
+
+        <section class="section-franquias">
+            <label for="checkbox">
+                <input type="checkbox" id="checkbox-exibir-franquias-individual" class="alinhamento-checkbox-radio" tabindex="Desmarque caso não queira exibir franquias neste orçamento" value="aceito" checked> Quero exibir as
+                franquias neste orçamento
+            </label>
+            <div>
+                <table id="id-table-franquias" class="table-franquias">
+                    <thead>
+                        <tr id="tr-th-franquias-individual">
+                            <th>Tipo da Franquia</th>
+                            <th>Veículo</th>
+                            <th>
+                                <p class="p-title-table-seguradora">-</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-frnaquias-individual">
+                        <tr id="tr-td-franquias-individual">
+                            <td>
+                                <select id="select-tipo-individual-franquia">
+                                    <option value="selecione" disabled selected>Selecione</option>
+                                    <option value="Casco: Reduzida">Casco: Reduzida</option>
+                                    <option value="Casco: Obrigatória">Casco: Obrigatória</option>
+                                    <option value="Casco: Majorada">Casco: Majorada</option>
+                                    <option value="Casco: Não Contratado">Casco: Não Contratado</option>
+                                </select>
+                            </td>
+                            <td id="td-veiculo-table-franquias-individual" class="td-table-cliente">
+                                <strong>VEÍCULO</strong>
+                            </td>
+                            <td>
+                                <input type="text" id="valor-individual-franquias" name="nome" placeholder="R$ 0,00" title="Insira o valor da franquia">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="div-btn-add-franquia-individual">
+                    <button id="btn-add-franquia-individual" style="background-color:#068e01;">+ Franquia</button>
+                </div>
+                <div id="container-franquias-individual"></div>
+        </section>
+
+        <div class="header-title-section">
+            <span>FORMAS DE PAGAMENTO</span>
+        </div>
+        </div>
+        <section class="section-pagamento">
+
+            <div class="div-container-radio-pagamento">
+                <label for="radio">
+                    <input type="radio" class="alinhamento-checkbox-radio" name="tipo-pagamento-individual"
+                        value="Cartão Porto"> Cartão Porto
+                </label>
+
+                <label for="radio">
+                    <input type="radio" class="alinhamento-checkbox-radio" name="tipo-pagamento-individual"
+                        value="Cartão de Crédito"> Cartão de Crédito
+                </label>
+
+                <label for="radio">
+                    <input type="radio" class="alinhamento-checkbox-radio" name="tipo-pagamento-individual"
+                        value="Débito em Conta"> Débito em Conta
+                </label>
+
+                <label for="radio">
+                    <input type="radio" class="alinhamento-checkbox-radio" name="tipo-pagamento-individual"
+                        value="Boleto"> Boleto
+                </label>
+            </div>
+
+            <table id="id-table-pagamento" class="table-pagamento">
+                <thead>
+                    <tr>
+                        <th colspan="2">
+                            <p class="p-title-table-seguradora">-</p>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr></tr>
+                    <tr>
+                        <td>VALOR À VISTA</td>
+                        <td><input type="text" id="valor-avista-individual" name="nome" placeholder="R$ 0,00" title="Insira o valor do prêmio"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="div-container-pag" id="container-pagamento-segunda-seguradora-individual"></div>
+
+            <button type="button" class="btn-calcular-individual">Calcular</button>
+
+            <table>
+                <thead>
+                    <tr id="tr-th-pagamento-individual">
+                        <th id="th-pagamento-ok" class="th-table-ok">Ok</th>
+                        <th>Parcelas</th>
+                        <th>
+                            <p class="p-title-table-seguradora">-</p>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="tr-td-pagamento-avista-individual">
+                        <td>
+                            <input id="checkbox-pagamento-avista-individual" type="checkbox" value="aceito" title="Inserir pagamento a vista">
+                        </td>
+                        <td>A VISTA</td>
+                        <td>
+                            <input type="text" id="input-valor-avista-individual" name="nome" placeholder="R$ 0,00">
+                        </td>
+                    </tr>
+                    <tr id="tr-td-pagamento-individual1">
+                        <td>
+                            <input id="checkbox-pagamento-1-individual" type="checkbox" value="aceito" title="Inserir parcela de pagamento 1 vez">
+                        </td>
+                        <td>1 VEZ</td>
+                        <td>
+                            <input type="text" id="input-valor-1x-individual" name="nome" placeholder="R$ 0,00">
+                        </td>
+                    </tr>
+                    <tr id="tr-td-pagamento-individual2">
+                        <td>
+                            <input id="checkbox-pagamento-2-individual" type="checkbox" value="aceito" title="Inserir parcela de pagamento 2 vezes">
+                        </td>
+                        <td>2 VEZES</td>
+                        <td>
+                            <input type="text" id="input-valor-2x-individual" name="nome" placeholder="R$ 0,00">
+                        </td>
+                    </tr>
+                    <tr id="tr-td-pagamento-individual3">
+                        <td>
+                            <input id="checkbox-pagamento-3-individual" type="checkbox" value="aceito" title="Inserir parcela de pagamento 3 vezes">
+                        </td>
+                        <td>3 VEZES</td>
+                        <td>
+                            <input type="text" id="input-valor-3x-individual" name="nome" placeholder="R$ 0,00">
+                        </td>
+                    </tr>
+                    <tr id="tr-td-pagamento-individual4">
+                        <td>
+                            <input id="checkbox-pagamento-4-individual" type="checkbox" value="aceito" title="Inserir parcela de pagamento 4 vezes">
+                        </td>
+                        <td>4 VEZES</td>
+                        <td>
+                            <input type="text" id="input-valor-4x-individual" name="nome" placeholder="R$ 0,00">
+                        </td>
+                    </tr>
+                    <tr id="tr-td-pagamento-individual5">
+                        <td>
+                            <input id="checkbox-pagamento-5-individual" type="checkbox" value="aceito" title="Inserir parcela de pagamento 5 vezes">
+                        </td>
+                        <td>5 VEZES</td>
+                        <td>
+                            <input type="text" id="input-valor-5x-individual" name="nome" placeholder="R$ 0,00">
+                        </td>
+                    </tr>
+                    <tr id="tr-td-pagamento-individual6">
+                        <td>
+                            <input id="checkbox-pagamento-6-individual" type="checkbox" value="aceito" title="Inserir parcela de pagamento 6 vezes">
+                        </td>
+                        <td>6 VEZES</td>
+                        <td>
+                            <input type="text" id="input-valor-6x-individual" name="nome" placeholder="R$ 0,00">
+                        </td>
+                    </tr>
+                    <tr id="tr-td-pagamento-individual7">
+                        <td>
+                            <input id="checkbox-pagamento-7-individual" type="checkbox" value="aceito" title="Inserir parcela de pagamento 7 vezes">
+                        </td>
+                        <td>7 VEZES</td>
+                        <td>
+                            <input type="text" id="input-valor-7x-individual" name="nome" placeholder="R$ 0,00">
+                        </td>
+                    </tr>
+                    <tr id="tr-td-pagamento-individual8">
+                        <td>
+                            <input id="checkbox-pagamento-8-individual" type="checkbox" value="aceito" title="Inserir parcela de pagamento 8 vezes">
+                        </td>
+                        <td>8 VEZES</td>
+                        <td>
+                            <input type="text" id="input-valor-8x-individual" name="nome" placeholder="R$ 0,00">
+                        </td>
+                    </tr>
+                    <tr id="tr-td-pagamento-individual9">
+                        <td>
+                            <input id="checkbox-pagamento-9-individual" type="checkbox" value="aceito" title="Inserir parcela de pagamento 9 vezes">
+                        </td>
+                        <td>9 VEZES</td>
+                        <td>
+                            <input type="text" id="input-valor-9x-individual" name="nome" placeholder="R$ 0,00">
+                        </td>
+                    </tr>
+                    <tr id="tr-td-pagamento-individual10">
+                        <td>
+                            <input id="checkbox-pagamento-10-individual" type="checkbox" value="aceito" title="Inserir parcela de pagamento 10 vezes">
+                        </td>
+                        <td>10 VEZES</td>
+                        <td>
+                            <input type="text" id="input-valor-10x-individual" name="nome" placeholder="R$ 0,00">
+                        </td>
+                    </tr>
+                    <tr id="tr-td-pagamento-individual11">
+                        <td>
+                            <input id="checkbox-pagamento-11-individual" type="checkbox" value="aceito" title="Inserir parcela de pagamento 11 vezes">
+                        </td>
+                        <td>11 VEZES</td>
+                        <td>
+                            <input type="text" id="input-valor-11x-individual" name="nome" placeholder="R$ 0,00">
+                        </td>
+                    </tr>
+                    <tr id="tr-td-pagamento-individual12">
+                        <td>
+                            <input id="checkbox-pagamento-12-individual" type="checkbox" value="aceito" title="Inserir parcela de pagamento 12 vezes">
+                        </td>
+                        <td>12 VEZES</td>
+                        <td>
+                            <input type="text" id="input-valor-12x-individual" name="nome" placeholder="R$ 0,00">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </section>
+
+    <div class="header-title-section">
+        <span>OBSERVAÇÕES</span>
+    </div>
+
+    <section class="section-observacoes">
+        <label for="checkbox">
+            <input type="checkbox" class="alinhamento-checkbox-radio" id="observacoes-checkbox-aceito" value="aceito"
+                checked> Quero exibir observações
+            neste orçamento
+        </label>
+
+        <div class="div-obs-textarea">
+            <label class="label-title-textarea" for="nome">As observações inseridas manualmente serão exibidas antes das
+                demais observações previamente selecionadas.</label>
+            <textarea class="textarea-observacoes" name="nome" id="observacoes-textarea"
+                placeholder="Escreva aqui..." title="Insira neste campo a sua observação" style="letter-spacing: 2px;"></textarea>
+        </div>
+
+        <div class="div-obs-checkbox">
+            <label for="checkbox">
+                <input type="checkbox" class="alinhamento-checkbox-radio" id="obs-checkbox-1"
+                    title="Inserir observação no orçamento" value="este orçamento foi elaborado com base nas informações fornecidas pelo cliente." checked> ESTE
+                ORÇAMENTO FOI ELABORADO COM BASE NAS INFORMAÇÕES FORNECIDAS PELO
+                CLIENTE.
+            </label>
+
+            <label for="checkbox">
+                <input type="checkbox" class="alinhamento-checkbox-radio" id="obs-checkbox-2"
+                    title="Inserir observação no orçamento" value="seguro a valor de mercado a indenização será a % do valor referencial contratado do veículo constante na tabela fipe na data da indenização.">
+                SEGURO A VALOR DE MERCADO A INDENIZAÇÃO SERÁ A % DO VALOR REFERENCIAL
+                CONTRATADO DO VEÍCULO CONSTANTE NA TABELA FIPE NA DATA DA INDENIZAÇÃO.
+            </label>
+
+            <label for="checkbox">
+                <input type="checkbox" class="alinhamento-checkbox-radio" id="obs-checkbox-3"
+                    title="Inserir observação no orçamento" value="desconto na franquia de 25% limitado a r$250,00 em sinistro parcial indenizável e quando os consertos forem realizados na oficina referenciada.">
+                DESCONTO NA FRANQUIA DE 25% LIMITADO A R$250,00  EM SINISTRO PARCIAL
+                INDENIZÁVEL E QUANDO OS CONSERTOS FOREM REALIZADOS NA OFICINA REFERENCIADA.
+            </label>
+        </div>
+    </section>
+
+    <footer class="footer-buttons">
+        <button type="button" class="btn-save" title="Salvar dados do formulário de orçamento">Salvar Alterações</button>
+        <button type="button" id="generate-pdf" class="btn-pdf" title="Gerar PDF do orçamento">Gerar PDF</button>
+        <button type="button" class="btn-cancel" title="Cancelar cadastro dos dados no formulário">Cancelar Operação</button>
+    </footer>
+
+    <div id="loading" style="display: none;">
+        <img src="http://127.0.0.1:3000/circle-loading-gif.gif" alt="loading">
+    </div>
+
+    <script type="module" src="http://127.0.0.1:3000/editarOrcamentoCliente.js"></script>
+    <script src="http://127.0.0.1:3000/limparCampos.js"></script>
+    <script type="module" src="http://127.0.0.1:3000/clienteForm.js"></script>
+    <script src="http://127.0.0.1:3000/atualizarSeguradora.js"></script>
+    <script type="module" src="http://127.0.0.1:3000/calcularPagamento.js"></script>
+    <script type="module" src="http://127.0.0.1:3000/adicionarSeguradora.js"></script>
+    <script src="http://127.0.0.1:3000/atualizarVeiculo.js"></script>
+    <script type="module" src="http://127.0.0.1:3000/formatInputMoeda.js"></script>
+    <script type="module" src="http://127.0.0.1:3000/formatPlaca.js"></script>
+    <script type="module" src="http://127.0.0.1:3000/cancelarOperacao.js"></script>
+    <script type="module" src="http://127.0.0.1:3000/GesRiscoMenPreco.js"></script>
+    <script type="module" src="http://127.0.0.1:3000/adicionarVeiculo.js"></script>
+    <script type="module" src="http://127.0.0.1:3000/historicoExclusao.js"></script>
+    <script type="module" src="http://127.0.0.1:3000/adicionarFranquia.js"></script>
+    <script type="module" src="http://127.0.0.1:3000/TABValores.js"></script>
+    <script src="http://127.0.0.1:3000/configHeader.js"></script>
+</body>
+
+</html>

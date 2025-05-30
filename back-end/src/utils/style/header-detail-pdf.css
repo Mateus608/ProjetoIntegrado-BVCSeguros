@@ -1,0 +1,13 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+.detail-top-right {
+    height: 3.50cm;
+    width: auto;
+    position: absolute;
+    top: 0;
+    right: 0;
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/cliente-pdf.css">
+    <title>Cliente - PDF</title>
+</head>
+<body>
+    <div id="table-container-cliente">
+        <table id="id-table-clientes" class="table-cliente">
+            <thead>
+                <tr>
+                    <th id="th-nome-table-cliente" class="th-table-cliente">NOME</th>
+                    <th id="th-tipo-table-cliente" class="th-table-cliente">TIPO DO SEGURO</th>
+                    <th id="th-data-table-cliente" class="th-table-cliente">DATA</th>
+                    <th id="th-cotacao-table-cliente" class="th-table-cliente">ORÇAMENTO</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="td-nome-table-cliente" class="td-table-cliente">{{nomeCliente}}</td>
+                    <td id="td-tipo-table-cliente" class="td-table-cliente">{{tipoSeguro}}</td>
+                    <td id="td-data-table-cliente" class="td-table-cliente">{{dataAtual}}<br><p class="p-validade">Válido por 7 dias<p></td>
+                    <td id="td-cotacao-table-cliente" class="td-table-cliente">{{idOrcamento}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="http://localhost:3000/logo-bvcs-icon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="http://127.0.0.1:3000/style-form-auto/sweetalert-custom.css">
+    <title>Logs - BVCS [Admin] - Orçamentos</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<style>
+@font-face {
+  font-family: regular;
+  src: url("http://localhost:3000/CreatoDisplay-Light.otf");
+}
+
+@font-face {
+  font-family: bold;
+  src: url("http://localhost:3000/CreatoDisplay-Bold.otf");
+}
+
+:root {
+  --color-logo: #01458e;
+  --font-bold: "bold";
+  --font-regular: "regular";
+}
+
+    html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+}
+
+.div-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    width: 700px;
+    height: 400px;
+    background-color: #ffffff;
+    box-shadow: 0px 5px 8px #d4d4d4;
+    border-radius: 10px;
+    padding: 20px 40px;
+}
+
+.div-login p {
+    font-family: var(--font-regular);
+    letter-spacing: 0.5px;
+    font-size: 18px;
+    margin: 0;
+}
+
+.div-pass, .div-user {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+button {
+    font-family: var(--font-regular);
+    letter-spacing: 0.5px;
+    font-size: 14px;
+    color: #ffffff;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    transition: all 300ms ease-out;
+    cursor: pointer;
+}
+
+.btn-submit {
+    background-color: #068e01;
+    margin-right: 15px;
+}
+
+.btn-cancelar {
+    background-color: var(--color-logo);
+}
+
+.btn-clean {
+    background-color: #8e0101;
+}
+
+img {
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+.alinhamento-checkbox-radio {
+  transform: translateY(7.5px);
+}
+
+.scrollable-label {
+  display: block;
+  width: auto;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  overflow: hidden;
+}
+
+.table-container {
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.table-orcamentos-salvos thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  border-bottom: 2px solid #ccc;
+}
+
+tr {
+  font-family: var(--font-bold);
+  letter-spacing: 1.2px;
+}
+
+th {
+  background-color: var(--color-logo);
+  font-size: 11px;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 5px 5px 0px 0px;
+  text-align: center;
+}
+
+td {
+  font-family: var(--font-regular);
+  font-size: 11px;
+  letter-spacing: 1.2px;
+  text-align: center;
+  padding: 10px;
+}
+
+td img {
+  height: 25px;
+}
+
+#qtde-orcamentos {
+  font-family: var(--font-regular);
+  letter-spacing: 0.5px;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+</style>
+<body>
+    <img src="http://localhost:3000/Logo BVCS - Paisagem.svg" alt="">
+    <div class="div-login">
+        <p id="qtd-users"></p>
+        <img src="http://127.0.0.1:3000/pdf-icon.png" alt="pdf" style="position: absolute; transform: translateX(300px); margin-top: 20px; cursor: pointer; height: 35px;" id="img-pdf" title="Download dos log em PDF">
+        <p style="font-size: 11px;"><strong>Tipo 0 = Admin / Tipo 1 = Comum</strong></p>
+        <p style="font-size: 11px;"><i class="fa-solid fa-square" style="color:#8e0101; font-size: 8px; transform: translateY(-1.5px);"></i> Exclusão / 
+          <i class="fa-solid fa-square" style="color:#d15300; font-size: 8px; transform: translateY(-1.5px);"></i> Logout / 
+          <i class="fa-solid fa-square" style="color:#01458e; font-size: 8px; transform: translateY(-1.5px);"></i> Login / 
+          <i class="fa-solid fa-square" style="color:#068e01; font-size: 8px; transform: translateY(-1.5px);"></i> Orçamento Gerado /
+          <i class="fa-solid fa-square" style="color:#dee200; font-size: 8px; transform: translateY(-1.5px);"></i> Usuário Adicionado
+        </p>
+        <div class="scrollable-label">
+            <div class="table-container">
+                <table id="table-orcamentos" class="table-orcamentos-salvos">
+                    <thead>
+                        <tr>
+                            <th>Logs</th>
+                        </tr>
+                    </thead>
+                    <tbody id="logs-tbody">
+                           
+                    </tbody>
+                </table>
+            </div>
+        </div>    
+    
+    <div style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 15px;">
+        <button class="btn-clean" title="Excluir todos os logs">Limpar</button>
+        <button class="btn-cancelar" onclick="window.location.href='http://127.0.0.1:3000/administrativo';" title="Voltar a tela inicial">Voltar</button>
+    </div>
+    </div>
+
+    <script type="module" src="http://127.0.0.1:3000/logsConfig.js"></script>
+
+</body>
+</html>

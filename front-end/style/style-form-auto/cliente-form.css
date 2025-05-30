@@ -1,0 +1,17 @@
+.section-cliente {
+    padding: 50px 10px 50px 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.div-checkbox-pfisica-pjuridica {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.input-nome {
+    width: 350px !important;
+}

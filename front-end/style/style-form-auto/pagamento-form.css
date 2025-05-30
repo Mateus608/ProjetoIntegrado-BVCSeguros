@@ -1,0 +1,74 @@
+@font-face {
+    font-family: regular;
+    src: url("http://127.0.0.1:3000/fonts/CreatoDisplay-Light.otf");
+  }
+  
+  @font-face {
+    font-family: bold;
+    src: url("http://127.0.0.1:3000/fonts/CreatoDisplay-Bold.otf");
+  }
+  
+  :root {
+    --color-logo: #01458e;
+    --font-bold: "bold";
+    --font-regular: "regular";
+  }
+
+.section-pagamento {
+    padding: 50px 10px 50px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.section-pagamento button {
+    font-family: var(--font-bold);
+    font-size: 16px;
+    background-color: #068e01;
+    color: #ffffff;
+    padding: 12px;  
+    border: none;
+    border-radius: 5px;
+    transition: all 300ms ease-out;
+}
+
+.section-pagamento button:hover {
+    transform: scale(1.1);
+}
+
+.section-pagamento button:active {
+    transform: scale(0.9);
+    background-color: #666666;
+}
+
+#id-table-pagamento td:nth-child(2) {
+    padding-right: 0px !important;
+}
+
+#id-table-pagamento td:nth-child(1) {
+  padding: 0px 10px 0px 10px;
+}
+
+.new-table-pagamento td:nth-child(2) {
+  padding-right: 0px !important;
+}
+
+.new-table-pagamento td:nth-child(1) {
+  padding: 0px 10px 0px 10px;
+}
+
+.div-container-radio-pagamento {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.div-container-pag {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}

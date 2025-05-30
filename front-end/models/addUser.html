@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="http://127.0.0.1:3000/style-form-auto/sweetalert-custom.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="http://localhost:3000/logo-bvcs-icon.ico" type="image/x-icon">
+    <title>Adicionar Usuário - Boa Vista Orçamentos</title>
+</head>
+<style>
+@font-face {
+  font-family: regular;
+  src: url("http://localhost:3000/CreatoDisplay-Light.otf");
+}
+
+@font-face {
+  font-family: bold;
+  src: url("http://localhost:3000/CreatoDisplay-Bold.otf");
+}
+
+:root {
+  --color-logo: #01458e;
+  --font-bold: "bold";
+  --font-regular: "regular";
+}
+
+    html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+}
+
+.div-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    width: 300px;
+    height: 350px;
+    background-color: #ffffff;
+    box-shadow: 0px 5px 8px #d4d4d4;
+    border-radius: 10px;
+    padding: 40px;
+}
+
+.div-login p {
+    font-family: var(--font-regular);
+    letter-spacing: 0.5px;
+    font-size: 18px;
+    margin: 0;
+}
+
+.div-pass, .div-user {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+label {
+    font-family: var(--font-regular);
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+
+input {
+    border-radius: 10px;
+    height: 25px;
+    border: 1px solid #919191;
+    font-family: var(--font-regular);
+    letter-spacing: 0.5px;
+    font-size: 13px;
+    padding: 0 5px 0 5px;
+}
+
+button {
+    font-family: var(--font-regular);
+    letter-spacing: 0.5px;
+    font-size: 14px;
+    color: #ffffff;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    transition: all 300ms ease-out;
+    cursor: pointer;
+}
+
+.btn-submit {
+    background-color: var(--color-logo);
+    margin-right: 15px;
+}
+
+.btn-cancelar {
+    background-color: #8e0101;
+}
+
+img {
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+.alinhamento-checkbox-radio {
+  transform: translateY(7.5px);
+}
+
+</style>
+<body>
+    <img src="http://localhost:3000/Logo BVCS - Paisagem.svg" alt="">
+    <form method="post">
+    <div class="div-login">
+        <p>Adicionar Usuário</p>
+        <div style="width: 100%;">
+        <div class="div-pass">
+            <label for="text">Código de controle interno</label>
+            <input id="id-user" style="width: 100px; height: 25px" type="text" name="id" placeholder="Digite o código">
+        </div>
+        <div style="margin-top: 10px;" class="div-user">
+            <label for="text">Usuário</label>
+            <input id="usuario" type="text" name="user" placeholder="Digite o usuário">
+        </div>
+        <div style="margin-top: 10px;" class="div-user">
+            <label for="text">Nome de Usuário</label>
+            <input id="nome-user" type="text" name="user" placeholder="Digite o usuário">
+        </div>
+        <div style="margin-top: 10px;" class="div-pass">
+            <label for="text">Senha</label>
+            <div>
+            <input id="passwd" type="password" name="passwd" placeholder="Digite a senha" style="width: 83%;">
+            <i id="togglePassword" class="fa-solid fa-eye" style="cursor: pointer; margin-left: 10px; display: inline;"></i>
+            <i id="togglePasswordClose" style="cursor: pointer; margin-left: 10px; display: none;" class="fa-solid fa-eye-slash"></i>
+        </div>
+        </div>
+        <div style="margin-top: 10px;" class="div-pass">
+            <label for="checkbox">
+                <input type="radio" class="alinhamento-checkbox-radio" name="tipo_user" value= "0" title="Tipo usuário administrador"> Administrador
+            </label>
+            <label for="checkbox">
+                <input type="radio" class="alinhamento-checkbox-radio" name="tipo_user" value="1" title="Tipo usuário comum"> Comum
+            </label>
+        </div>
+    </div>
+    <div>
+        <button class="btn-submit" type="submit">Salvar</button>
+        <button class="btn-cancelar" type="button">Cancelar</button>
+    </div>
+    </div>
+</form>
+
+<script type="module" src="http://127.0.0.1:3000/addUserConfig.js"></script>
+
+</body>
+</html>

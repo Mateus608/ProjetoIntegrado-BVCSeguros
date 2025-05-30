@@ -1,0 +1,41 @@
+@font-face {
+  font-family: bold;
+  src: url("http://127.0.0.1:3000/CreatoDisplay-Bold.otf");
+}
+
+:root {
+  --color-logo: #01458e;
+  --font-bold: "bold";
+}
+
+.header-title-section {
+    display: flex;
+    align-items: center;
+    position: relative;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+.header-title-section span {
+    font-family: var(--font-bold);
+    color: var(--color-logo);
+    letter-spacing: 1.2px;
+}
+  
+ .header-title-section::before,
+.header-title-section::after {
+    content: "";
+    height: 1px;
+    background-color: rgb(206, 206, 206); /* Cor das linhas */
+    flex-grow: 1; /* Faz as linhas ocuparem o espaço disponível */
+  }
+  
+  .header-title-section::before {
+    flex-basis: 50px; /* Comprimento fixo da linha esquerda */
+    margin-right: 10px; /* Espaço entre a linha esquerda e o texto */
+  }
+  
+  .header-title-section::after {
+    margin-left: 10px; /* Espaço entre o texto e a linha direita */
+  }
+  

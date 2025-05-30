@@ -1,0 +1,89 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: regular;
+    src: url("http://127.0.0.1:3000/fonts/CreatoDisplay-Light.otf");
+}
+
+@font-face {
+    font-family: bold;
+    src: url("http://127.0.0.1:3000/fonts/CreatoDisplay-Bold.otf");
+}
+
+:root {
+    --color-logo: #01458e;
+    --font-bold: "bold";
+    --font-regular: "regular";
+}
+
+button {
+    cursor: pointer;
+}
+
+.nav-menu-superior {
+    padding: 15px 50px;
+    background-color: #01458e;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.447);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    transition: top 0.3s;
+}
+
+.p-version {
+    font-family: var(--font-bold);
+    color: #ffffff;
+    font-size: 15px;
+}
+
+.p-orc-auto {
+    font-family: var(--font-regular);
+    letter-spacing: 0.5px;
+    color: #ffffff;
+}
+
+.img-logo-bvcs {
+    height: 30px;
+}
+
+.img-icon-voltar {
+    height: 25px;
+    transition: all 300ms ease-out;
+    transform: translateY(2px);
+}
+
+.p-voltar {
+    font-family: var(--font-bold);
+    font-size: 14px;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+}
+
+.div-container-voltar {
+    display: flex;
+    flex-direction: row;
+    gap: 9px;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-limpar-campos {
+    font-family: var(--font-bold);
+    background-color: #ffffff;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    padding: 8px;
+    color: var(--color-logo);
+    border-radius: 5px;
+    border: 0px;
+    transition: all 300ms ease-out;
+}

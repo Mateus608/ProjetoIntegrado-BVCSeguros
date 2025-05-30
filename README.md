@@ -50,7 +50,7 @@ Fornecer uma ferramenta eficiente para controle de orçamentos, permitindo que a
 
 1. Clone este repositório:
    ```bash
-   git clone https://github.com/Mateus608/PI---API-Rest-and-Front
+   git clone https://github.com/Mateus608/ProjetoIntegrado-BVCSeguros.git
    ```
 2. Acesse a pasta do projeto
 3. Acesse o terminal
